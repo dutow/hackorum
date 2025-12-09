@@ -1,6 +1,6 @@
 COMPOSE ?= docker compose -f docker-compose.dev.yml
 
-.PHONY: dev dev-detach down shell console test imap logs db-migrate db-reset psql
+.PHONY: dev dev-detach down shell console test imap logs db-migrate db-reset psql sim-email-once sim-email-stream
 
 dev: ## Start dev stack (foreground)
 	$(COMPOSE) up --build
@@ -34,3 +34,9 @@ imap: ## Start stack with IMAP worker profile
 
 logs: ## Follow web logs
 	$(COMPOSE) logs -f web
+
+sim-email-once: ## Send a single simulated email (env: SENT_OFFSET_SECONDS, EXISTING_ALIAS_PROB, EXISTING_TOPIC_PROB)
+	$(COMPOSE) exec web ruby script/simulate_email_once.rb
+
+sim-email-stream: ## Start a continuous simulated email stream (env: MIN_INTERVAL_SECONDS, MAX_INTERVAL_SECONDS, EXISTING_ALIAS_PROB, EXISTING_TOPIC_PROB)
+	$(COMPOSE) exec web ruby script/simulate_email_stream.rb

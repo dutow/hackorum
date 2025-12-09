@@ -31,7 +31,19 @@ Makefile shortcuts:
 * `make db-migrate` / `make db-reset`
 * `make psql`
 
-Optional IMAP worker (off by default):
+### Incoming email simulator
+
+There are two helper scripts `script/simulate_email_once.rb` and `simulate_email_stream.rb` that simulate incoming emails.
+The scripts can be configured by a few environment variables, for details see the source of the scripts.
+
+Makefile shortcuts:
+* `make sim-email-once`
+* `make sim-email-stream`
+
+### IMAP worker
+
+The "production" IMAP worker which pulls actual mailing list messages from an IMAP label can be also run locally.
+
 ```bash
 docker compose -f docker-compose.dev.yml --profile imap up --build
 ```
