@@ -10,11 +10,11 @@ td.topic-title.status-border class=status_class id=dom_id(topic, "status_cell") 
       .topic-byline
         - if creator
           span.topic-byline-item
-            = image_tag creator.display_gravatar_url(size: 20), class: "topic-byline-avatar", alt: creator.name
+            = image_tag creator.gravatar_url(size: 20), class: "topic-byline-avatar", alt: creator.name
             span.topic-byline-name = creator.name
         - if last_sender
           span.topic-byline-item.topic-byline-right
-            = image_tag last_sender.display_gravatar_url(size: 20), class: "topic-byline-avatar", alt: last_sender.name
+            = image_tag last_sender.gravatar_url(size: 20), class: "topic-byline-avatar", alt: last_sender.name
             span.topic-byline-name = last_sender.name
     .topic-row-footer
       .topic-footer-icons
